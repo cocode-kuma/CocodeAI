@@ -8,12 +8,12 @@ name = "claude_code_desktop_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
-tauri-build = { version = "=2.5.6", features = [] }
+tauri-build = { version = "=2.6.2", features = [] }
 
 [dependencies]
-tauri = { version = "=2.10.3", features = ["tray-icon"] }
-tauri-runtime = "=2.10.1"
-tauri-runtime-wry = "=2.10.1"
+tauri = { version = "=2.11.0", features = ["tray-icon"] }
+tauri-runtime = "=2.11.0"
+tauri-runtime-wry = "=2.11.0"
 tauri-plugin-shell = "2"
 tauri-plugin-dialog = "2"
 tauri-plugin-process = "2"

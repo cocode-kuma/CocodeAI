@@ -144,7 +144,7 @@ async function compileExecutable({
       autoloadPackageJson: true,
       windows: {
         title: productName,
-        publisher: 'Claude Code',
+        publisher: '酷码工作室',
         description: productName,
         hideConsole: true,
       },
