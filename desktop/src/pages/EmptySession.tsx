@@ -524,28 +524,38 @@ export function EmptySession() {
 
   return (
     <div className="relative flex flex-1 flex-col overflow-hidden bg-[var(--color-surface)]">
+      {/* 背景装饰光晕 */}
+      {!isMobileComposer && (
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-brand)] opacity-[0.04] blur-[120px]" />
+        </div>
+      )}
+
       <div className={`flex flex-1 flex-col items-center justify-center ${
-        isMobileComposer ? 'px-6 pb-[230px] pt-10' : 'p-8 pb-32'
+        isMobileComposer ? 'px-6 pb-[230px] pt-10' : 'p-8 pb-36'
       }`}>
         <div className={`flex flex-col items-center text-center ${
-          isMobileComposer ? 'max-w-[300px]' : 'max-w-md'
+          isMobileComposer ? 'max-w-[300px]' : 'max-w-lg'
         }`}>
-          <img
-            src="/app-icon.png"
-            alt="cocodeAI"
-            className={isMobileComposer ? 'mb-4 h-16 w-16' : 'mb-6 h-24 w-24'}
-          />
+          <div className={`${isMobileComposer ? 'mb-5' : 'mb-8'} relative`}>
+            <div className="absolute inset-0 rounded-3xl bg-[var(--color-brand)] opacity-10 blur-2xl scale-110" />
+            <img
+              src="/app-icon.png"
+              alt="cocodeAI"
+              className={`relative ${isMobileComposer ? 'h-16 w-16' : 'h-20 w-20'} rounded-2xl`}
+            />
+          </div>
           <h1
-            className={`mb-2 font-extrabold tracking-tight text-[var(--color-text-primary)] ${
-              isMobileComposer ? 'text-2xl' : 'text-3xl'
+            className={`mb-3 font-extrabold tracking-tight text-[var(--color-text-primary)] ${
+              isMobileComposer ? 'text-2xl' : 'text-[2rem] leading-tight'
             }`}
             style={{ fontFamily: 'var(--font-headline)' }}
           >
             {t('empty.title')}
           </h1>
           <p
-            className={`mx-auto text-[var(--color-text-secondary)] ${
-              isMobileComposer ? 'max-w-[280px] text-sm leading-6' : 'max-w-xs'
+            className={`mx-auto leading-relaxed text-[var(--color-text-secondary)] ${
+              isMobileComposer ? 'max-w-[280px] text-sm' : 'max-w-sm text-[15px]'
             }`}
             style={{ fontFamily: 'var(--font-body)' }}
           >

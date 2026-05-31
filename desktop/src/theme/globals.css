@@ -1281,3 +1281,132 @@ button, input, textarea, select, a, [role="button"] {
 @keyframes progress-fill {
   from { width: 0%; }
 }
+
+/* ─── cocodeAI refined UI enhancements ─────────────────────── */
+
+/* Smooth fade-in for page content */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up 0.32s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Subtle scale-in for modals / cards */
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.animate-scale-in { animation: scale-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Sidebar nav item — active indicator bar */
+.sidebar-nav-item-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  border-radius: 0 3px 3px 0;
+  background: var(--color-brand);
+}
+
+/* Settings nav active pill */
+.settings-nav-active {
+  background: var(--color-brand);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.28);
+}
+
+/* Glass card — elevated */
+.glass-card {
+  background: var(--color-surface-glass);
+  border: 1px solid var(--color-surface-glass-border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+/* Divider with label */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* Scrollbar — thin Apple-style */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-outline-a72);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-outline-a92); }
+
+/* Focus ring — consistent */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-ring);
+}
+
+/* TitleBar pill segment control */
+.titlebar-segment {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--color-surface-container);
+  border-radius: var(--radius-lg);
+  padding: 3px;
+  border: 1px solid var(--color-border);
+}
+.titlebar-segment-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: calc(var(--radius-lg) - 3px);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  transition: all 0.15s ease;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  -webkit-app-region: no-drag;
+}
+.titlebar-segment-btn:hover { color: var(--color-text-secondary); }
+.titlebar-segment-btn.active {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.06);
+}
+
+/* Settings content area — generous spacing */
+.settings-content-area > * + * { margin-top: 2rem; }
+.settings-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-headline);
+}
+.settings-section-desc {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
