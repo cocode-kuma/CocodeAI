@@ -527,14 +527,15 @@ export function EmptySession() {
       {/* 背景装饰光晕 */}
       {!isMobileComposer && (
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-brand)] opacity-[0.04] blur-[120px]" />
+          <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-brand)] opacity-[0.04] blur-[120px]" />
         </div>
       )}
 
       <div className={`flex flex-1 flex-col items-center justify-center ${
-        isMobileComposer ? 'px-6 pb-[230px] pt-10' : 'p-8 pb-36'
+        isMobileComposer ? 'px-6 pt-10 pb-6' : 'px-8 py-12'
       }`}>
-        <div className={`flex flex-col items-center text-center ${
+        {/* 欢迎文字 */}
+        <div className={`flex flex-col items-center text-center mb-8 ${
           isMobileComposer ? 'max-w-[300px]' : 'max-w-lg'
         }`}>
           <div className={`${isMobileComposer ? 'mb-5' : 'mb-8'} relative`}>
@@ -562,16 +563,12 @@ export function EmptySession() {
             {t('empty.subtitle')}
           </p>
         </div>
-      </div>
 
-      <div
-        data-testid="empty-session-composer-shell"
-        className={`absolute left-0 right-0 z-30 flex justify-center ${
-        isMobileComposer
-          ? 'bottom-0 px-3 pb-[calc(env(safe-area-inset-bottom)+10px)]'
-          : 'bottom-4 px-8'
-      }`}
-      >
+        {/* 输入框 — 紧跟欢迎文字下方 */}
+        <div
+          data-testid="empty-session-composer-shell"
+          className={`w-full flex justify-center ${isMobileComposer ? 'px-0' : 'px-0'}`}
+        >
         <div className={`flex w-full flex-col ${isMobileComposer ? 'max-w-none' : 'max-w-3xl'}`}>
           <div
             ref={panelRef}
@@ -796,6 +793,7 @@ export function EmptySession() {
           )}
         </div>
       </div>
+    </div>
 
       <input ref={fileInputRef} type="file" multiple className="hidden" onChange={handleFileSelect} />
     </div>
