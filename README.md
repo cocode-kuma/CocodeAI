@@ -1,7 +1,7 @@
 # cocodeAI
 
 <p align="center">
-  <img src="16ByfaTY1.png" alt="cocodeAI" width="160">
+  <img src="desktop/public/app-icon.png" alt="cocodeAI" width="160">
 </p>
 
 <div align="center">
