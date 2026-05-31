@@ -6,7 +6,7 @@
 
 <div align="center">
 
-**酷码工作室自研 · AI 编程工作台**
+**酷码工作室出品 · 下一代 AI 编程助手**
 
 [![GitHub Stars](https://img.shields.io/github/stars/cocode-kuma/CocodeAI?style=social)](https://github.com/cocode-kuma/CocodeAI/stargazers)
 [![GitHub Issues](https://img.shields.io/github/issues/cocode-kuma/CocodeAI)](https://github.com/cocode-kuma/CocodeAI/issues)
@@ -16,34 +16,32 @@
 
 ---
 
-## 简介
+## 这是什么
 
-**cocodeAI** 是由**酷码工作室**基于 cc-haha 自研的 AI 编程 Agent 工作台，将 AI 对话、多项目管理、代码 Diff、权限审批、模型提供商配置、定时任务等功能集成到一个简洁的 macOS / Windows 桌面应用中。
+cocodeAI 是**酷码工作室**历时打磨、完全自研的 AI 编程 Agent 桌面客户端。
 
-科技蓝色调 UI，苹果设计风格，专为日常开发工作流打造。
-
----
-
-## 核心功能
-
-- 🤖 **AI Agent 对话** — 基于 Claude 的智能编程助手，支持多轮对话与工具调用
-- 📁 **多项目管理** — 侧边栏统一管理多个工作目录，快速切换
-- 🔀 **Worktree 支持** — 可视化管理 Git 分支与 Worktree
-- 📝 **代码 Diff 视图** — 实时展示 AI 修改的代码变更
-- 🔐 **权限审批** — 精细化控制 AI 的操作权限
-- 🔌 **多模型提供商** — 支持 Claude 官方、OpenAI 等多种接入方式
-- ⏰ **定时任务** — 支持定时触发 AI 任务
-- 🖥️ **Computer Use** — 允许 AI 截图并操作界面
-- 📱 **H5 远程访问** — 手机浏览器也可远程使用
+不同于普通的 AI 聊天工具，cocodeAI 把 Agent 真正嵌入你的开发流程——它能读代码、改文件、跑命令、审权限，像一个真正懂你项目的搭档坐在旁边。界面采用苹果设计语言，科技蓝色调，干净、克制、专注。
 
 ---
 
-## 下载安装
+## 能做什么
 
-前往 [Releases](https://github.com/cocode-kuma/CocodeAI/releases) 页面下载最新版本。
+- **多项目并行** — 左侧边栏同时管理多个工程，随时切换，互不干扰
+- **代码级 Diff** — AI 每次改动都有清晰的变更视图，改了什么一目了然
+- **权限沙箱** — 每个危险操作都需要你点头，AI 不会背着你乱跑
+- **Worktree 管理** — 多分支并行开发，不用来回切换
+- **定时 Agent** — 设定时间，让 AI 自动跑任务，早上来看结果就行
+- **手机远程** — H5 入口，出门在外也能用手机控制 Agent 干活
+- **多模型接入** — Claude、OpenAI，想用哪个接哪个
 
-| 平台 | 安装包 |
-|------|--------|
+---
+
+## 下载
+
+去 [Releases](https://github.com/cocode-kuma/CocodeAI/releases) 下载对应平台的安装包。
+
+| 平台 | 格式 |
+|------|------|
 | macOS | `.dmg` |
 | Windows | `.exe` / `.msi` |
 
@@ -51,9 +49,8 @@
 
 ## 关于酷码工作室
 
-cocodeAI 由**酷码工作室**自主研发，基于 cc-haha 深度定制，持续迭代中。
-
-> 让每一位开发者都能用上顺手的 AI 编程工具。
+我们是一支专注 AI 工具研发的小团队，cocodeAI 是我们的核心产品。  
+我们相信好的 AI 工具应该让人用得顺手，而不是让人迁就它。
 
 ---
 
