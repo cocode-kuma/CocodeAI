@@ -148,31 +148,48 @@ export function Settings() {
   return (
     <div className="flex-1 flex flex-col overflow-hidden bg-[var(--color-surface)]">
       <div className="flex-1 flex overflow-hidden">
-        {/* Tab navigation */}
-        <div className="w-[180px] border-r border-[var(--color-border)] py-3 flex-shrink-0 flex flex-col">
-          <div className="flex-1">
-            <TabButton icon="dns" label={t('settings.tab.providers')} active={activeTab === 'providers'} onClick={() => setActiveTab('providers')} />
-            <TabButton icon="shield" label={t('settings.tab.permissions')} active={activeTab === 'permissions'} onClick={() => setActiveTab('permissions')} />
-            <TabButton icon="tune" label={t('settings.tab.general')} active={activeTab === 'general'} onClick={() => setActiveTab('general')} />
-            <TabButton icon="qr_code_2" label={t('settings.tab.h5Access')} active={activeTab === 'h5Access'} onClick={() => setActiveTab('h5Access')} />
-            <TabButton icon="chat" label={t('settings.tab.adapters')} active={activeTab === 'adapters'} onClick={() => setActiveTab('adapters')} />
-            <TabButton icon="terminal" label={t('settings.tab.terminal')} active={activeTab === 'terminal'} onClick={() => setActiveTab('terminal')} />
-            <TabButton icon="dns" label={t('settings.tab.mcp')} active={activeTab === 'mcp'} onClick={() => setActiveTab('mcp')} />
-            <TabButton icon="smart_toy" label={t('settings.tab.agents')} active={activeTab === 'agents'} onClick={() => setActiveTab('agents')} />
-            <TabButton icon="auto_awesome" label={t('settings.tab.skills')} active={activeTab === 'skills'} onClick={() => setActiveTab('skills')} />
-            <TabButton icon="history_edu" label={t('settings.tab.memory')} active={activeTab === 'memory'} onClick={() => setActiveTab('memory')} />
-            <TabButton icon="extension" label={t('settings.tab.plugins')} active={activeTab === 'plugins'} onClick={() => setActiveTab('plugins')} />
-            <TabButton icon="mouse" label={t('settings.tab.computerUse')} active={activeTab === 'computerUse'} onClick={() => setActiveTab('computerUse')} />
-            <TabButton icon="monitoring" label={t('settings.tab.activity')} active={activeTab === 'activity'} onClick={() => setActiveTab('activity')} />
-            <TabButton icon="monitor_heart" label={t('settings.tab.diagnostics')} active={activeTab === 'diagnostics'} onClick={() => setActiveTab('diagnostics')} />
+        {/* Tab navigation — redesigned */}
+        <div className="w-[220px] border-r border-[var(--color-border)] flex-shrink-0 flex flex-col overflow-y-auto" style={{ background: 'var(--color-surface-sidebar)' }}>
+          <div className="flex-1 px-3 py-5 flex flex-col gap-6">
+
+            {/* AI 能力 */}
+            <div>
+              <div className="px-3 mb-2 text-[10px] font-semibold tracking-widest text-[var(--color-text-tertiary)] uppercase">AI 能力</div>
+              <TabButton icon="smart_toy" label={t('settings.tab.agents')} active={activeTab === 'agents'} onClick={() => setActiveTab('agents')} />
+              <TabButton icon="auto_awesome" label={t('settings.tab.skills')} active={activeTab === 'skills'} onClick={() => setActiveTab('skills')} />
+              <TabButton icon="extension" label={t('settings.tab.plugins')} active={activeTab === 'plugins'} onClick={() => setActiveTab('plugins')} />
+              <TabButton icon="history_edu" label={t('settings.tab.memory')} active={activeTab === 'memory'} onClick={() => setActiveTab('memory')} />
+              <TabButton icon="mouse" label={t('settings.tab.computerUse')} active={activeTab === 'computerUse'} onClick={() => setActiveTab('computerUse')} />
+            </div>
+
+            {/* 连接与接入 */}
+            <div>
+              <div className="px-3 mb-2 text-[10px] font-semibold tracking-widest text-[var(--color-text-tertiary)] uppercase">连接与接入</div>
+              <TabButton icon="dns" label={t('settings.tab.providers')} active={activeTab === 'providers'} onClick={() => setActiveTab('providers')} />
+              <TabButton icon="dns" label={t('settings.tab.mcp')} active={activeTab === 'mcp'} onClick={() => setActiveTab('mcp')} />
+              <TabButton icon="chat" label={t('settings.tab.adapters')} active={activeTab === 'adapters'} onClick={() => setActiveTab('adapters')} />
+              <TabButton icon="qr_code_2" label={t('settings.tab.h5Access')} active={activeTab === 'h5Access'} onClick={() => setActiveTab('h5Access')} />
+            </div>
+
+            {/* 系统 */}
+            <div>
+              <div className="px-3 mb-2 text-[10px] font-semibold tracking-widest text-[var(--color-text-tertiary)] uppercase">系统</div>
+              <TabButton icon="tune" label={t('settings.tab.general')} active={activeTab === 'general'} onClick={() => setActiveTab('general')} />
+              <TabButton icon="shield" label={t('settings.tab.permissions')} active={activeTab === 'permissions'} onClick={() => setActiveTab('permissions')} />
+              <TabButton icon="terminal" label={t('settings.tab.terminal')} active={activeTab === 'terminal'} onClick={() => setActiveTab('terminal')} />
+              <TabButton icon="monitoring" label={t('settings.tab.activity')} active={activeTab === 'activity'} onClick={() => setActiveTab('activity')} />
+              <TabButton icon="monitor_heart" label={t('settings.tab.diagnostics')} active={activeTab === 'diagnostics'} onClick={() => setActiveTab('diagnostics')} />
+            </div>
           </div>
-          <div className="border-t border-[var(--color-border)]/40 pt-1">
+
+          {/* 关于 */}
+          <div className="px-3 pb-4 border-t border-[var(--color-border)] pt-3">
             <TabButton icon="info" label={t('settings.tab.about')} active={activeTab === 'about'} onClick={() => setActiveTab('about')} />
           </div>
         </div>
 
-        {/* Tab content */}
-        <div className="flex-1 overflow-y-auto px-8 py-6">
+        {/* Tab content — more breathing room */}
+        <div className="flex-1 overflow-y-auto px-12 py-10">
           {activeTab === 'providers' && <ProviderSettings />}
           {activeTab === 'permissions' && <PermissionSettings />}
           {activeTab === 'activity' && <ActivitySettings />}
@@ -198,13 +215,13 @@ function TabButton({ icon, label, active, onClick }: { icon: string; label: stri
   return (
     <button
       onClick={onClick}
-      className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-left transition-colors ${
+      className={`w-full flex items-center gap-3 px-3 py-2.5 text-[13px] text-left rounded-[10px] transition-all duration-150 mb-0.5 ${
         active
-          ? 'bg-[var(--color-surface-selected)] text-[var(--color-text-primary)] font-medium'
-          : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-hover)]'
+          ? 'bg-[var(--color-brand)] text-white font-medium shadow-sm'
+          : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-text-primary)]'
       }`}
     >
-      <span className="material-symbols-outlined text-[18px]">{icon}</span>
+      <span className={`material-symbols-outlined text-[17px] flex-shrink-0 ${active ? 'text-white' : 'text-[var(--color-text-tertiary)]'}`}>{icon}</span>
       {label}
     </button>
   )
