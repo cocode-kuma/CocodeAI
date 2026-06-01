@@ -2,12 +2,18 @@ import memoize from 'lodash-es/memoize.js'
 import { homedir } from 'os'
 import { join } from 'path'
 
+/** cocodeAI's own config dir — always ~/.cocodeai, never shared with Claude Code CLI. */
+export const getCocodeAIConfigHomeDir = memoize(
+  (): string => join(homedir(), '.cocodeai').normalize('NFC'),
+  () => 'static',
+)
+
 // Memoized: 150+ callers, many on hot paths. Keyed off CLAUDE_CONFIG_DIR so
 // tests that change the env var get a fresh value without explicit cache.clear.
 export const getClaudeConfigHomeDir = memoize(
   (): string => {
     return (
-      process.env.CLAUDE_CONFIG_DIR ?? join(homedir(), '.claude')
+      process.env.CLAUDE_CONFIG_DIR ?? join(homedir(), '.cocodeai')
     ).normalize('NFC')
   },
   () => process.env.CLAUDE_CONFIG_DIR,
