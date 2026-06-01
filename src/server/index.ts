@@ -23,6 +23,8 @@ import { ensurePersistentStorageUpgraded } from './services/persistentStorageMig
 import { handleStaticH5Request } from './staticH5.js'
 import { classifyH5Request, shouldBlockDisabledH5Access, shouldRequireH5Token } from './h5AccessPolicy.js'
 import { H5AccessService } from './services/h5AccessService.js'
+import { SettingsService } from './services/settingsService.js'
+import { sessionService } from './services/sessionService.js'
 
 function readArgValue(flag: string): string | undefined {
   const args = process.argv.slice(2)
@@ -124,6 +126,11 @@ export function startServer(port = PORT, host = HOST) {
   diagnosticsService.installConsoleCapture()
   diagnosticsService.installProcessCapture()
   ProviderService.setServerPort(port)
+
+  // Restore syncHistory preference so sessionService knows whether to scan ~/.claude/projects/
+  void new SettingsService().getUserSettings().then((s) => {
+    sessionService.setSyncHistory(s.syncHistory !== false)
+  })
   const localConnectHost =
     host === '0.0.0.0' || host === '127.0.0.1' || host === 'localhost'
       ? '127.0.0.1'

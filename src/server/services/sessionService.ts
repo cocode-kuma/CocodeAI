@@ -238,7 +238,18 @@ export class SessionService {
   // --------------------------------------------------------------------------
 
   private getConfigDir(): string {
-    return process.env.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude')
+    return path.join(os.homedir(), '.cocodeai')
+  }
+
+  /** ~/.claude/projects — only used when sync is enabled, read-only */
+  private getClaudeProjectsDir(): string {
+    return path.join(process.env.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude'), 'projects')
+  }
+
+  private syncHistoryEnabled = false
+
+  setSyncHistory(enabled: boolean): void {
+    this.syncHistoryEnabled = enabled
   }
 
   private getProjectsDir(): string {
@@ -903,49 +914,50 @@ export class SessionService {
   private async discoverSessionFiles(projectFilter?: string): Promise<
     Array<{ filePath: string; projectDir: string; sessionId: string }>
   > {
-    const projectsDir = this.getProjectsDir()
-    let projectDirs: string[]
+    const dirs = [this.getProjectsDir()]
+    if (this.syncHistoryEnabled) dirs.push(this.getClaudeProjectsDir())
 
-    try {
-      projectDirs = await fs.readdir(projectsDir)
-    } catch {
-      return []
-    }
-
-    // Optionally filter to a specific project
-    if (projectFilter) {
-      const sanitized = this.sanitizePath(normalizeDriveRootPathForPlatform(projectFilter))
-      projectDirs = projectDirs.filter((d) => d === sanitized)
-    }
-
+    const seenFiles = new Set<string>()
     const results: Array<{ filePath: string; projectDir: string; sessionId: string }> = []
 
-    for (const dir of projectDirs) {
-      const dirPath = path.join(projectsDir, dir)
-
-      // Ensure it's a directory
+    for (const projectsDir of dirs) {
+      let projectDirs: string[]
       try {
-        const stat = await fs.stat(dirPath)
-        if (!stat.isDirectory()) continue
+        projectDirs = await fs.readdir(projectsDir)
       } catch {
         continue
       }
 
-      let files: string[]
-      try {
-        files = await fs.readdir(dirPath)
-      } catch {
-        continue
+      if (projectFilter) {
+        const sanitized = this.sanitizePath(normalizeDriveRootPathForPlatform(projectFilter))
+        projectDirs = projectDirs.filter((d) => d === sanitized)
       }
 
-      for (const file of files) {
-        if (!file.endsWith('.jsonl')) continue
-        const sessionId = file.replace('.jsonl', '')
-        results.push({
-          filePath: path.join(dirPath, file),
-          projectDir: dir,
-          sessionId,
-        })
+      for (const dir of projectDirs) {
+        const dirPath = path.join(projectsDir, dir)
+        try {
+          const stat = await fs.stat(dirPath)
+          if (!stat.isDirectory()) continue
+        } catch {
+          continue
+        }
+
+        let files: string[]
+        try {
+          files = await fs.readdir(dirPath)
+        } catch {
+          continue
+        }
+
+        for (const file of files) {
+          if (!file.endsWith('.jsonl')) continue
+          const sessionId = file.replace('.jsonl', '')
+          const filePath = path.join(dirPath, file)
+          // deduplicate by sessionId in case both dirs have the same file
+          if (seenFiles.has(sessionId)) continue
+          seenFiles.add(sessionId)
+          results.push({ filePath, projectDir: dir, sessionId })
+        }
       }
     }
 

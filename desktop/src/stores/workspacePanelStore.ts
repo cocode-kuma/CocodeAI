@@ -11,7 +11,7 @@ export const WORKSPACE_PANEL_DEFAULT_WIDTH = 860
 export const WORKSPACE_PANEL_MIN_WIDTH = 640
 export const WORKSPACE_PANEL_MAX_WIDTH = 1120
 
-export type WorkspacePanelView = 'changed' | 'all'
+export type WorkspacePanelView = 'changed' | 'all' | 'browser'
 export type WorkspacePreviewKind = 'file' | 'diff'
 export type WorkspacePreviewCloseScope = 'current' | 'others' | 'left' | 'right' | 'all'
 export type WorkspacePreviewState =
@@ -39,6 +39,7 @@ export type WorkspacePanelSessionState = {
   isOpen: boolean
   activeView: WorkspacePanelView
   hasUserSelectedView?: boolean
+  browserUrl?: string
 }
 
 type WorkspacePanelLoadingState = {
@@ -71,6 +72,8 @@ type WorkspacePanelStore = {
   togglePanel: (sessionId: string) => void
   setWidth: (width: number) => void
   setActiveView: (sessionId: string, view: WorkspacePanelView) => void
+  openBrowser: (sessionId: string, url: string) => void
+  setBrowserUrl: (sessionId: string, url: string) => void
   loadStatus: (sessionId: string) => Promise<void>
   loadTree: (sessionId: string, path?: string) => Promise<void>
   toggleTreeNode: (sessionId: string, path: string) => Promise<void>
@@ -248,6 +251,31 @@ export const useWorkspacePanelStore = create<WorkspacePanelStore>((set, get) => 
           ...getSessionPanelState(state.panelBySession, sessionId),
           activeView: view,
           hasUserSelectedView: true,
+        },
+      },
+    })),
+
+  openBrowser: (sessionId, url) =>
+    set((state) => ({
+      panelBySession: {
+        ...state.panelBySession,
+        [sessionId]: {
+          ...getSessionPanelState(state.panelBySession, sessionId),
+          isOpen: true,
+          activeView: 'browser',
+          hasUserSelectedView: true,
+          browserUrl: url,
+        },
+      },
+    })),
+
+  setBrowserUrl: (sessionId, url) =>
+    set((state) => ({
+      panelBySession: {
+        ...state.panelBySession,
+        [sessionId]: {
+          ...getSessionPanelState(state.panelBySession, sessionId),
+          browserUrl: url,
         },
       },
     })),

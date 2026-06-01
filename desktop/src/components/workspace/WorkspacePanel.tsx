@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent } from 'react'
 import { MessageCircle } from 'lucide-react'
 import { Highlight } from 'prism-react-renderer'
+import { BrowserPanel } from './BrowserPanel'
 import type {
   WorkspaceChangedFile,
   WorkspaceFileStatus,
@@ -1063,7 +1064,7 @@ export function WorkspacePanel({ sessionId }: WorkspacePanelProps) {
     })
   }
 
-  const handleSetActiveView = (view: 'changed' | 'all') => {
+  const handleSetActiveView = (view: 'changed' | 'all' | 'browser') => {
     setActiveView(sessionId, view)
     setIsViewMenuOpen(false)
   }
@@ -1402,14 +1403,14 @@ export function WorkspacePanel({ sessionId }: WorkspacePanelProps) {
           <div className="relative min-w-0">
             <button
               type="button"
-              aria-label={activeView === 'changed' ? t('workspace.changedFiles') : t('workspace.allFiles')}
+              aria-label={activeView === 'changed' ? t('workspace.changedFiles') : activeView === 'browser' ? t('workspace.browser') : t('workspace.allFiles')}
               aria-haspopup="menu"
               aria-expanded={isViewMenuOpen}
               onClick={() => setIsViewMenuOpen((open) => !open)}
               className="inline-flex min-w-0 max-w-full items-center gap-1 rounded-[7px] px-2 py-1 text-[14px] font-semibold leading-5 text-[var(--color-text-primary)] transition-colors hover:bg-[var(--color-surface-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]/35"
             >
               <span className="truncate">
-                {activeView === 'changed' ? t('workspace.changedFiles') : t('workspace.allFiles')}
+                {activeView === 'changed' ? t('workspace.changedFiles') : activeView === 'browser' ? t('workspace.browser') : t('workspace.allFiles')}
               </span>
               <span className="material-symbols-outlined shrink-0 text-[15px] font-normal text-[var(--color-text-tertiary)]">expand_more</span>
             </button>
@@ -1418,8 +1419,9 @@ export function WorkspacePanel({ sessionId }: WorkspacePanelProps) {
                 role="menu"
                 className="absolute left-0 top-[calc(100%+4px)] z-30 min-w-[124px] overflow-hidden rounded-[9px] border border-[var(--color-border)] bg-[var(--color-surface-container-lowest)] py-1 shadow-[var(--shadow-dropdown)]"
               >
-                {(['changed', 'all'] as const).map((view) => {
+                {(['changed', 'all', 'browser'] as const).map((view) => {
                   const selected = activeView === view
+                  const label = view === 'changed' ? t('workspace.changedFiles') : view === 'browser' ? t('workspace.browser') : t('workspace.allFiles')
                   return (
                     <button
                       key={view}
@@ -1430,9 +1432,7 @@ export function WorkspacePanel({ sessionId }: WorkspacePanelProps) {
                         selected ? 'bg-[var(--color-surface-selected)] text-[var(--color-text-primary)]' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-hover)]'
                       }`}
                     >
-                      <span className="min-w-0 flex-1 truncate">
-                        {view === 'changed' ? t('workspace.changedFiles') : t('workspace.allFiles')}
-                      </span>
+                      <span className="min-w-0 flex-1 truncate">{label}</span>
                       {selected && (
                         <span className="material-symbols-outlined text-[14px] text-[var(--color-brand)]">check</span>
                       )}
@@ -1460,8 +1460,10 @@ export function WorkspacePanel({ sessionId }: WorkspacePanelProps) {
         <WorkspaceFilterInput value={filterQuery} onChange={setFilterQuery} />
 
         <div className="min-h-0 flex-1 overflow-auto py-2">
-          {activeView === 'changed' ? renderChangedView() : renderAllFilesView()}
+          {activeView === 'changed' ? renderChangedView() : activeView === 'browser' ? null : renderAllFilesView()}
         </div>
+
+        {activeView === 'browser' && <BrowserPanel sessionId={sessionId} />}
       </div>
 
       {fileContextMenu && (

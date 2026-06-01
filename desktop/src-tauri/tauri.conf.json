@@ -17,6 +17,7 @@
         "height": 960,
         "minWidth": 960,
         "minHeight": 640,
+        "fullscreen": true,
         "decorations": true,
         "transparent": false,
         "acceptFirstMouse": true

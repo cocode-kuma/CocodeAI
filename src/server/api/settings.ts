@@ -14,6 +14,7 @@ import { SettingsService } from '../services/settingsService.js'
 import { ApiError, errorResponse } from '../middleware/errorHandler.js'
 import { ensureDesktopCliLauncherInstalled } from '../services/desktopCliLauncherService.js'
 import { conversationService } from '../services/conversationService.js'
+import { sessionService } from '../services/sessionService.js'
 
 const settingsService = new SettingsService()
 
@@ -72,6 +73,9 @@ async function handleUserSettings(req: Request): Promise<Response> {
     const body = await parseJsonBody(req)
     await settingsService.updateUserSettings(body)
     syncThinkingSettingToActiveSessions(body)
+    if (typeof body.syncHistory === 'boolean') {
+      sessionService.setSyncHistory(body.syncHistory)
+    }
     return Response.json({ ok: true })
   }
 

@@ -1,6 +1,7 @@
 import { useRef, useEffect, useMemo, memo, useState, useCallback, useDeferredValue, useLayoutEffect, type ReactNode } from 'react'
 import { ArrowDown, BookMarked, Bot, CheckCircle2, ChevronDown, ChevronRight, CircleStop, FileStack, LoaderCircle, MessageCircle, Settings, Target, XCircle } from 'lucide-react'
 import { ApiError } from '../../api/client'
+import { extractDetectedUrls } from '../../utils/extractDetectedUrls'
 import { sessionsApi, type SessionTurnCheckpoint } from '../../api/sessions'
 import { useChatStore } from '../../stores/chatStore'
 import { useSessionStore } from '../../stores/sessionStore'
@@ -8,6 +9,7 @@ import { useWorkspaceChatContextStore } from '../../stores/workspaceChatContextS
 import { SETTINGS_TAB_ID, useTabStore } from '../../stores/tabStore'
 import { useTeamStore } from '../../stores/teamStore'
 import { useUIStore } from '../../stores/uiStore'
+import { useWorkspacePanelStore } from '../../stores/workspacePanelStore'
 import { useTranslation } from '../../i18n'
 import type { TranslationKey } from '../../i18n/locales/en'
 import { UserMessage } from './UserMessage'
@@ -1961,6 +1963,7 @@ export const MessageBlock = memo(function MessageBlock({
           content={message.content}
         >
           <AssistantMessage content={message.content} branchAction={branchAction} />
+          {sessionId && <UrlDetectedCards content={message.content} sessionId={sessionId} />}
         </SelectableChatMessage>
       )
     case 'thinking':
@@ -2045,3 +2048,38 @@ export const MessageBlock = memo(function MessageBlock({
       )
   }
 })
+
+// ── URL detection card ────────────────────────────────────────────────────────
+
+function UrlDetectedCards({ content, sessionId }: { content: string; sessionId: string }) {
+  const t = useTranslation()
+  const openBrowser = useWorkspacePanelStore((s) => s.openBrowser)
+  const urls = useMemo(() => extractDetectedUrls(content), [content])
+  if (urls.length === 0) return null
+
+  return (
+    <div className="mt-2 flex flex-col gap-1.5">
+      {urls.map((url) => (
+        <div
+          key={url}
+          className="flex items-center gap-2 rounded-[9px] border border-[var(--color-border)] bg-[var(--color-surface-container)] px-3 py-2 text-[12px]"
+        >
+          <span className="material-symbols-outlined text-[15px] text-[var(--color-brand)]">travel_explore</span>
+          <span className="min-w-0 flex-1 truncate font-mono text-[var(--color-text-secondary)]">{url}</span>
+          <button
+            className="shrink-0 rounded-[6px] bg-[var(--color-brand)] px-2.5 py-1 text-[11px] font-medium text-white transition-opacity hover:opacity-90"
+            onClick={() => openBrowser(sessionId, url)}
+          >
+            {t('browser.openInWorkspace')}
+          </button>
+          <button
+            className="shrink-0 rounded-[6px] border border-[var(--color-border)] px-2 py-1 text-[11px] text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-surface-hover)]"
+            onClick={() => import('@tauri-apps/plugin-shell').then((m) => m.open(url)).catch(() => window.open(url, '_blank'))}
+          >
+            {t('browser.openExternal')}
+          </button>
+        </div>
+      ))}
+    </div>
+  )
+}

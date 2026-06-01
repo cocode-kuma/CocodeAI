@@ -984,7 +984,7 @@ button, input, textarea, select, a, [role="button"] {
 }
 
 .glass-panel:focus-within {
-  box-shadow: var(--shadow-focus-ring), var(--shadow-dropdown);
+  box-shadow: var(--shadow-dropdown);
 }
 
 .composer-drop-target-active {

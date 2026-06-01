@@ -1154,6 +1154,131 @@ fn open_windows_notification_settings() -> Result<bool, String> {
     open_windows_notification_settings_impl()
 }
 
+// ── Browser panel (child WebviewWindow that tracks the workspace panel) ───────
+
+const BROWSER_WINDOW_LABEL: &str = "browser-panel";
+
+/// Inspector script injected into localhost / file:// pages only.
+/// Enables element hover-highlight and click-to-select, then postMessages
+/// the selected element info back to the React layer via Tauri events.
+const INSPECTOR_SCRIPT: &str = r#"
+(function () {
+  if (window.__ccInspectorInstalled) return;
+  window.__ccInspectorInstalled = true;
+  let active = false;
+  let hovered = null;
+  const HIGHLIGHT = '2px solid #3b82f6';
+  function enter(el) {
+    if (hovered && hovered !== el) hovered.style.outline = '';
+    hovered = el;
+    el.style.outline = HIGHLIGHT;
+  }
+  function leave(el) { if (el) el.style.outline = ''; }
+  document.addEventListener('mouseover', e => { if (active) enter(e.target); }, true);
+  document.addEventListener('mouseout',  e => { if (active) leave(e.target); }, true);
+  document.addEventListener('click', e => {
+    if (!active) return;
+    e.preventDefault(); e.stopPropagation();
+    const el = e.target;
+    leave(el);
+    active = false;
+    window.__tauri_ipc_post({ cmd: 'element_selected', payload: {
+      outerHTML: el.outerHTML.slice(0, 2000),
+      selector: getCssSelector(el),
+      text: el.innerText?.slice(0, 200) ?? '',
+      rect: JSON.stringify(el.getBoundingClientRect()),
+    }});
+  }, true);
+  function getCssSelector(el) {
+    const parts = [];
+    while (el && el.nodeType === 1) {
+      let sel = el.tagName.toLowerCase();
+      if (el.id) { sel += '#' + el.id; parts.unshift(sel); break; }
+      const idx = Array.from(el.parentNode?.children ?? []).indexOf(el) + 1;
+      if (idx > 1) sel += ':nth-child(' + idx + ')';
+      parts.unshift(sel);
+      el = el.parentElement;
+    }
+    return parts.join(' > ');
+  }
+  window.__ccInspectorSetActive = (v) => { active = v; };
+})();
+"#;
+
+#[tauri::command]
+fn browser_open(
+    app: AppHandle,
+    url: String,
+    x: i32, y: i32, width: u32, height: u32,
+) -> Result<(), String> {
+    // Close existing panel if any
+    if let Some(w) = app.get_webview_window(BROWSER_WINDOW_LABEL) {
+        let _ = w.close();
+    }
+
+    let is_local = url.starts_with("http://localhost")
+        || url.starts_with("http://127.0.0.1")
+        || url.starts_with("file://");
+
+    let main = app.get_webview_window(MAIN_WINDOW_LABEL)
+        .ok_or("main window not found")?;
+
+    let mut builder = tauri::WebviewWindowBuilder::new(
+        &app,
+        BROWSER_WINDOW_LABEL,
+        tauri::WebviewUrl::External(url.parse().map_err(|e| format!("invalid url: {e}"))?),
+    )
+    .title("Browser")
+    .decorations(false)
+    .resizable(false)
+    .shadow(false)
+    .position(x as f64, y as f64)
+    .inner_size(width as f64, height as f64)
+    .parent(&main)
+    .map_err(|e| format!("set parent: {e}"))?;
+
+    if is_local {
+        builder = builder.initialization_script_for_all_frames(INSPECTOR_SCRIPT);
+    }
+
+    builder.build().map_err(|e| format!("build browser window: {e}"))?;
+    Ok(())
+}
+
+#[tauri::command]
+fn browser_navigate(app: AppHandle, url: String) -> Result<(), String> {
+    let w = app.get_webview_window(BROWSER_WINDOW_LABEL)
+        .ok_or("browser panel not open")?;
+    w.navigate(url.parse().map_err(|e| format!("invalid url: {e}"))?)
+        .map_err(|e| format!("navigate: {e}"))
+}
+
+#[tauri::command]
+fn browser_set_bounds(app: AppHandle, x: i32, y: i32, width: u32, height: u32) -> Result<(), String> {
+    let w = app.get_webview_window(BROWSER_WINDOW_LABEL)
+        .ok_or("browser panel not open")?;
+    w.set_position(tauri::PhysicalPosition::new(x, y))
+        .map_err(|e| format!("set_position: {e}"))?;
+    w.set_size(tauri::PhysicalSize::new(width, height))
+        .map_err(|e| format!("set_size: {e}"))
+}
+
+#[tauri::command]
+fn browser_close(app: AppHandle) -> Result<(), String> {
+    if let Some(w) = app.get_webview_window(BROWSER_WINDOW_LABEL) {
+        w.close().map_err(|e| format!("close: {e}"))?;
+    }
+    Ok(())
+}
+
+#[tauri::command]
+fn browser_inspector_set_active(app: AppHandle, active: bool) -> Result<(), String> {
+    let w = app.get_webview_window(BROWSER_WINDOW_LABEL)
+        .ok_or("browser panel not open")?;
+    let script = format!("window.__ccInspectorSetActive && window.__ccInspectorSetActive({});", active);
+    w.eval(&script).map_err(|e| format!("eval: {e}"))
+}
+
 #[tauri::command]
 fn set_app_zoom(window: tauri::WebviewWindow, zoom_factor: f64) -> Result<(), String> {
     let clamped = zoom_factor.clamp(0.5, 2.0);
@@ -2181,7 +2306,12 @@ pub fn run() {
             get_app_mode,
             set_app_mode,
             detect_portable_dir,
-            set_app_zoom
+            set_app_zoom,
+            browser_open,
+            browser_navigate,
+            browser_set_bounds,
+            browser_close,
+            browser_inspector_set_active
         ]);
 
     // macOS: native menu bar (traffic-light overlay style)

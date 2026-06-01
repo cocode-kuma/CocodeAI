@@ -400,7 +400,7 @@ export function ActiveSession() {
           )}
 
           {isEmpty ? (
-            <div className="flex flex-1 flex-col items-center justify-center p-8 pb-32">
+            <div className="flex flex-1 flex-col items-center justify-center p-8">
               <div className="flex max-w-md flex-col items-center text-center">
                 {isMemberSession ? (
                   <>
