@@ -1,4 +1,5 @@
 import { memo } from 'react'
+import type { MouseEvent as ReactMouseEvent } from 'react'
 import { MarkdownRenderer } from '../markdown/MarkdownRenderer'
 import { MessageActionBar, type MessageBranchAction } from './MessageActionBar'
 import { InlineImageGallery } from './InlineImageGallery'
@@ -7,9 +8,10 @@ type Props = {
   content: string
   isStreaming?: boolean
   branchAction?: MessageBranchAction
+  onLinkClick?: (href: string, event: ReactMouseEvent<HTMLDivElement>) => boolean | void
 }
 
-export const AssistantMessage = memo(function AssistantMessage({ content, isStreaming, branchAction }: Props) {
+export const AssistantMessage = memo(function AssistantMessage({ content, isStreaming, branchAction, onLinkClick }: Props) {
   if (!content.trim()) return null
 
   const documentLayout = shouldUseDocumentLayout(content)
@@ -32,6 +34,7 @@ export const AssistantMessage = memo(function AssistantMessage({ content, isStre
             content={content}
             variant={documentLayout ? 'document' : 'default'}
             streaming={isStreaming}
+            onLinkClick={onLinkClick}
           />
           {!isStreaming && <InlineImageGallery text={content} />}
           {isStreaming && (

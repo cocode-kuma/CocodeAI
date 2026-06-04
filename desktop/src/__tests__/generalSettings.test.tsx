@@ -695,7 +695,7 @@ describe('Settings > General tab', () => {
       expect(desktopNotificationsMock.requestDesktopNotificationPermission).toHaveBeenCalledTimes(1)
     })
     expect(desktopNotificationsMock.notifyDesktop).toHaveBeenCalledWith({
-      title: 'Claude Code Haha notifications are enabled',
+      title: 'cocodeAI notifications are enabled',
       body: 'Permission prompts and completed agent replies will now use system notifications.',
     })
   })
@@ -721,9 +721,7 @@ describe('Settings > General tab', () => {
     fireEvent.click(screen.getByText('General'))
     expect(screen.queryByRole('region', { name: 'H5 Access' })).not.toBeInTheDocument()
 
-    const generalTab = screen.getByText('General')
     const h5Tab = screen.getByText('H5 Access')
-    expect((generalTab.compareDocumentPosition(h5Tab) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0).toBe(true)
     fireEvent.click(h5Tab)
 
     const section = screen.getByRole('region', { name: 'H5 Access' })

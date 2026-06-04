@@ -4,7 +4,7 @@
  * 2. workspacePanelStore — openBrowser / setBrowserUrl
  */
 
-import { describe, it, expect, beforeEach } from 'bun:test'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { extractDetectedUrls } from '../../utils/extractDetectedUrls'
 import { useWorkspacePanelStore } from '../../stores/workspacePanelStore'
 
@@ -20,11 +20,11 @@ describe('extractDetectedUrls', () => {
   })
 
   it('detects local .html file path', () => {
-    expect(extractDetectedUrls('Open /tmp/project/index.html to preview')).toEqual(['file:///tmp/project/index.html'])
+    expect(extractDetectedUrls('Open /tmp/project/index.html to preview')).toEqual(['/tmp/project/index.html'])
   })
 
   it('detects local .md file path', () => {
-    expect(extractDetectedUrls('See /home/user/README.md for details')).toEqual(['file:///home/user/README.md'])
+    expect(extractDetectedUrls('See /home/user/README.md for details')).toEqual(['/home/user/README.md'])
   })
 
   it('deduplicates repeated URLs', () => {

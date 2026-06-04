@@ -1,7 +1,8 @@
-import { useRef, useEffect, useMemo, memo, useState, useCallback, useDeferredValue, useLayoutEffect, type ReactNode } from 'react'
+import { useRef, useEffect, useMemo, memo, useState, useCallback, useDeferredValue, useLayoutEffect, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react'
 import { ArrowDown, BookMarked, Bot, CheckCircle2, ChevronDown, ChevronRight, CircleStop, FileStack, LoaderCircle, MessageCircle, Settings, Target, XCircle } from 'lucide-react'
 import { ApiError } from '../../api/client'
 import { extractDetectedUrls } from '../../utils/extractDetectedUrls'
+import { normalizeWorkspaceOpenTarget } from '../../utils/workspaceOpenTarget'
 import { sessionsApi, type SessionTurnCheckpoint } from '../../api/sessions'
 import { useChatStore } from '../../stores/chatStore'
 import { useSessionStore } from '../../stores/sessionStore'
@@ -1937,6 +1938,37 @@ export const MessageBlock = memo(function MessageBlock({
   }
 }) {
   const t = useTranslation()
+  const openBrowser = useWorkspacePanelStore((s) => s.openBrowser)
+  const openPreview = useWorkspacePanelStore((s) => s.openPreview)
+  const workspaceStatus = useWorkspacePanelStore((s) => sessionId ? s.statusBySession[sessionId] : undefined)
+  const sessionWorkDir = useSessionStore((s) => sessionId ? s.sessions.find((session) => session.id === sessionId)?.workDir : null)
+  const workDir = workspaceStatus?.workDir ?? sessionWorkDir ?? null
+
+  const openWorkspaceTarget = useCallback((rawTarget: string) => {
+    if (!sessionId) return false
+    const target = normalizeWorkspaceOpenTarget(rawTarget, workDir)
+    if (target.kind === 'browser') {
+      openBrowser(sessionId, target.value)
+      return true
+    }
+    if (target.kind === 'workspace-preview' && target.previewPath) {
+      void openPreview(sessionId, target.previewPath, 'file')
+      return true
+    }
+    if (target.kind === 'external') {
+      void import('@tauri-apps/plugin-shell')
+        .then((m) => m.open(target.value))
+        .catch(() => window.open(target.value, '_blank'))
+      return true
+    }
+    return true
+  }, [openBrowser, openPreview, sessionId, workDir])
+
+  const handleAssistantLinkClick = useCallback((href: string, event: ReactMouseEvent<HTMLDivElement>) => {
+    event.preventDefault()
+    event.stopPropagation()
+    return openWorkspaceTarget(href)
+  }, [openWorkspaceTarget])
 
   switch (message.type) {
     case 'user_text':
@@ -1962,8 +1994,12 @@ export const MessageBlock = memo(function MessageBlock({
           role="assistant"
           content={message.content}
         >
-          <AssistantMessage content={message.content} branchAction={branchAction} />
-          {sessionId && <UrlDetectedCards content={message.content} sessionId={sessionId} />}
+          <AssistantMessage
+            content={message.content}
+            branchAction={branchAction}
+            onLinkClick={handleAssistantLinkClick}
+          />
+          {sessionId && <UrlDetectedCards content={message.content} onOpenTarget={openWorkspaceTarget} />}
         </SelectableChatMessage>
       )
     case 'thinking':
@@ -2051,9 +2087,8 @@ export const MessageBlock = memo(function MessageBlock({
 
 // ── URL detection card ────────────────────────────────────────────────────────
 
-function UrlDetectedCards({ content, sessionId }: { content: string; sessionId: string }) {
+function UrlDetectedCards({ content, onOpenTarget }: { content: string; onOpenTarget: (target: string) => boolean }) {
   const t = useTranslation()
-  const openBrowser = useWorkspacePanelStore((s) => s.openBrowser)
   const urls = useMemo(() => extractDetectedUrls(content), [content])
   if (urls.length === 0) return null
 
@@ -2068,7 +2103,7 @@ function UrlDetectedCards({ content, sessionId }: { content: string; sessionId: 
           <span className="min-w-0 flex-1 truncate font-mono text-[var(--color-text-secondary)]">{url}</span>
           <button
             className="shrink-0 rounded-[6px] bg-[var(--color-brand)] px-2.5 py-1 text-[11px] font-medium text-white transition-opacity hover:opacity-90"
-            onClick={() => openBrowser(sessionId, url)}
+            onClick={() => onOpenTarget(url)}
           >
             {t('browser.openInWorkspace')}
           </button>

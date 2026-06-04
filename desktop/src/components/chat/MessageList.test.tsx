@@ -1,10 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
-import { MessageList, buildRenderModel } from './MessageList'
+import { MessageBlock, MessageList, buildRenderModel } from './MessageList'
 import { relativizeWorkspacePath } from './CurrentTurnChangeCard'
 import { sessionsApi } from '../../api/sessions'
 import { useChatStore } from '../../stores/chatStore'
 import { useWorkspaceChatContextStore } from '../../stores/workspaceChatContextStore'
+import { useWorkspacePanelStore } from '../../stores/workspacePanelStore'
 import { useSettingsStore } from '../../stores/settingsStore'
 import { useSessionStore } from '../../stores/sessionStore'
 import { useTabStore } from '../../stores/tabStore'
@@ -110,6 +111,7 @@ describe('MessageList nested tool calls', () => {
     useSessionStore.setState({ sessions: [], activeSessionId: null, isLoading: false, error: null })
     useChatStore.setState({ sessions: { [ACTIVE_TAB]: makeSessionState() } })
     useWorkspaceChatContextStore.setState(useWorkspaceChatContextStore.getInitialState(), true)
+    useWorkspacePanelStore.setState(useWorkspacePanelStore.getInitialState(), true)
     vi.spyOn(sessionsApi, 'getTurnCheckpoints').mockImplementation(
       () => new Promise(() => {}),
     )
@@ -121,6 +123,30 @@ describe('MessageList nested tool calls', () => {
       isGitRepo: false,
       changedFiles: [],
     })
+  })
+
+  it('opens assistant localhost markdown links in the workspace browser', () => {
+    render(
+      <MessageBlock
+        sessionId={ACTIVE_TAB}
+        message={{
+          id: 'assistant-link',
+          type: 'assistant_text',
+          content: '[Open app](http://localhost:3000)',
+          timestamp: 1,
+        }}
+        activeThinkingId={null}
+        agentTaskNotifications={{}}
+        toolResult={null}
+      />,
+    )
+
+    fireEvent.click(screen.getByRole('link', { name: 'Open app' }))
+
+    const panel = useWorkspacePanelStore.getState().panelBySession[ACTIVE_TAB]
+    expect(panel?.isOpen).toBe(true)
+    expect(panel?.activeView).toBe('browser')
+    expect(panel?.browserUrl).toBe('http://localhost:3000/')
   })
 
   it('windows long transcripts instead of mounting every historical message at once', () => {

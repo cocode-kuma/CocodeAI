@@ -27,6 +27,21 @@ use tauri_plugin_shell::{
     ShellExt,
 };
 
+#[cfg(target_os = "windows")]
+use base64::{engine::general_purpose::STANDARD as BASE64_STANDARD, Engine as _};
+#[cfg(target_os = "windows")]
+use image::{codecs::png::PngEncoder, ColorType, ImageEncoder};
+#[cfg(target_os = "windows")]
+use windows::Win32::{
+    Foundation::{HWND, RECT},
+    Graphics::Gdi::{
+        BitBlt, CreateCompatibleBitmap, CreateCompatibleDC, DeleteDC, DeleteObject, GetDC,
+        GetDIBits, ReleaseDC, SelectObject, BITMAPINFO, BITMAPINFOHEADER, BI_RGB, DIB_RGB_COLORS,
+        HBITMAP, HDC, HGDIOBJ, SRCCOPY,
+    },
+    UI::WindowsAndMessaging::GetClientRect,
+};
+
 #[cfg(target_os = "macos")]
 mod macos_notifications {
     use std::ffi::{CStr, CString};
@@ -1158,6 +1173,19 @@ fn open_windows_notification_settings() -> Result<bool, String> {
 
 const BROWSER_WINDOW_LABEL: &str = "browser-panel";
 
+fn is_allowed_browser_url(url: &str) -> bool {
+    url == "about:blank"
+        || url.starts_with("http://localhost")
+        || url.starts_with("https://localhost")
+        || url.starts_with("http://127.0.0.1")
+        || url.starts_with("https://127.0.0.1")
+        || url.starts_with("file://")
+}
+
+fn should_inject_browser_inspector(url: &str) -> bool {
+    is_allowed_browser_url(url) && url != "about:blank"
+}
+
 /// Inspector script injected into localhost / file:// pages only.
 /// Enables element hover-highlight and click-to-select, then postMessages
 /// the selected element info back to the React layer via Tauri events.
@@ -1167,41 +1195,195 @@ const INSPECTOR_SCRIPT: &str = r#"
   window.__ccInspectorInstalled = true;
   let active = false;
   let hovered = null;
-  const HIGHLIGHT = '2px solid #3b82f6';
-  function enter(el) {
-    if (hovered && hovered !== el) hovered.style.outline = '';
-    hovered = el;
-    el.style.outline = HIGHLIGHT;
+  let selected = null;
+  const overlay = document.createElement('div');
+  overlay.style.cssText = [
+    'position:fixed',
+    'z-index:2147483647',
+    'pointer-events:none',
+    'display:none',
+    'border:2px solid #3b82f6',
+    'background:rgba(59,130,246,0.12)',
+    'box-shadow:0 0 0 99999px rgba(15,23,42,0.04)',
+    'border-radius:4px',
+    'box-sizing:border-box'
+  ].join(';');
+  document.documentElement.appendChild(overlay);
+
+  function isSelectableElement(value) {
+    return value && value.nodeType === 1 && value !== overlay && value !== document.documentElement && value !== document.body;
   }
-  function leave(el) { if (el) el.style.outline = ''; }
-  document.addEventListener('mouseover', e => { if (active) enter(e.target); }, true);
-  document.addEventListener('mouseout',  e => { if (active) leave(e.target); }, true);
+
+  function updateOverlay(el) {
+    if (!isSelectableElement(el)) {
+      overlay.style.display = 'none';
+      return;
+    }
+    const rect = el.getBoundingClientRect();
+    overlay.style.display = 'block';
+    overlay.style.left = Math.max(0, rect.left) + 'px';
+    overlay.style.top = Math.max(0, rect.top) + 'px';
+    overlay.style.width = Math.max(1, rect.width) + 'px';
+    overlay.style.height = Math.max(1, rect.height) + 'px';
+  }
+
+  function shortText(el, max) {
+    return (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, max);
+  }
+
+  function cssEscape(value) {
+    if (window.CSS && typeof window.CSS.escape === 'function') return window.CSS.escape(value);
+    return String(value).replace(/[^a-zA-Z0-9_-]/g, function (ch) { return '\\' + ch; });
+  }
+
+  function uniqueSelectorFor(el) {
+    if (!isSelectableElement(el)) return '';
+    const test = function (selector) {
+      try { return document.querySelectorAll(selector).length === 1; } catch (_) { return false; }
+    };
+    const tag = el.tagName.toLowerCase();
+    if (el.id) {
+      const selector = tag + '#' + cssEscape(el.id);
+      if (test(selector)) return selector;
+    }
+    const testId = el.getAttribute('data-testid') || el.getAttribute('data-test') || el.getAttribute('data-cy');
+    if (testId) {
+      const selector = tag + '[data-testid="' + testId.replace(/"/g, '\\"') + '"]';
+      if (test(selector)) return selector;
+    }
+    const aria = el.getAttribute('aria-label');
+    if (aria) {
+      const selector = tag + '[aria-label="' + aria.replace(/"/g, '\\"') + '"]';
+      if (test(selector)) return selector;
+    }
+    const classes = Array.from(el.classList || []).filter(Boolean).slice(0, 3);
+    if (classes.length > 0) {
+      const selector = tag + '.' + classes.map(cssEscape).join('.');
+      if (test(selector)) return selector;
+    }
+    return cssPath(el);
+  }
+
+  function cssPath(el) {
+    const parts = [];
+    let node = el;
+    while (isSelectableElement(node)) {
+      let selector = node.tagName.toLowerCase();
+      if (node.id) {
+        selector += '#' + cssEscape(node.id);
+        parts.unshift(selector);
+        break;
+      }
+      const parent = node.parentElement;
+      if (!parent) break;
+      const siblings = Array.from(parent.children).filter(function (child) { return child.tagName === node.tagName; });
+      if (siblings.length > 1) selector += ':nth-of-type(' + (siblings.indexOf(node) + 1) + ')';
+      parts.unshift(selector);
+      node = parent;
+    }
+    return parts.join(' > ');
+  }
+
+  function xpath(el) {
+    const parts = [];
+    let node = el;
+    while (isSelectableElement(node)) {
+      let index = 1;
+      let sibling = node.previousElementSibling;
+      while (sibling) {
+        if (sibling.tagName === node.tagName) index += 1;
+        sibling = sibling.previousElementSibling;
+      }
+      parts.unshift(node.tagName.toLowerCase() + '[' + index + ']');
+      node = node.parentElement;
+    }
+    return '/' + parts.join('/');
+  }
+
+  function attributesFor(el) {
+    const attrs = {};
+    Array.from(el.attributes || []).slice(0, 30).forEach(function (attr) {
+      attrs[attr.name] = attr.value.slice(0, 500);
+    });
+    return attrs;
+  }
+
+  function ancestryFor(el) {
+    const items = [];
+    let node = el;
+    while (isSelectableElement(node) && items.length < 8) {
+      items.unshift({
+        tagName: node.tagName,
+        selector: uniqueSelectorFor(node),
+        text: shortText(node, 120),
+        role: node.getAttribute('role') || undefined,
+        className: node.className ? String(node.className).slice(0, 240) : undefined
+      });
+      node = node.parentElement;
+    }
+    return items;
+  }
+
+  function payloadFor(el) {
+    const rect = el.getBoundingClientRect();
+    return {
+      url: window.location.href,
+      title: document.title || '',
+      selector: uniqueSelectorFor(el),
+      cssPath: cssPath(el),
+      xpath: xpath(el),
+      tagName: el.tagName,
+      id: el.id || undefined,
+      className: el.className ? String(el.className).slice(0, 500) : undefined,
+      text: shortText(el, 500),
+      attributes: attributesFor(el),
+      outerHTML: el.outerHTML.slice(0, 8000),
+      innerHTML: el.innerHTML.slice(0, 4000),
+      rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
+      ancestry: ancestryFor(el)
+    };
+  }
+
+  function sendSelection(el) {
+    selected = el;
+    updateOverlay(el);
+    const payload = payloadFor(el);
+    if (window.__TAURI_INTERNALS__ && typeof window.__TAURI_INTERNALS__.invoke === 'function') {
+      window.__TAURI_INTERNALS__.invoke('browser_element_selected', { payload: payload });
+      return;
+    }
+    if (window.__tauri_ipc_post) {
+      window.__tauri_ipc_post({ cmd: 'browser_element_selected', payload: { payload: payload } });
+    }
+  }
+
+  document.addEventListener('mouseover', e => {
+    if (!active) return;
+    hovered = e.target;
+    updateOverlay(hovered);
+  }, true);
   document.addEventListener('click', e => {
     if (!active) return;
     e.preventDefault(); e.stopPropagation();
     const el = e.target;
-    leave(el);
     active = false;
-    window.__tauri_ipc_post({ cmd: 'element_selected', payload: {
-      outerHTML: el.outerHTML.slice(0, 2000),
-      selector: getCssSelector(el),
-      text: el.innerText?.slice(0, 200) ?? '',
-      rect: JSON.stringify(el.getBoundingClientRect()),
-    }});
+    if (isSelectableElement(el)) sendSelection(el);
   }, true);
-  function getCssSelector(el) {
-    const parts = [];
-    while (el && el.nodeType === 1) {
-      let sel = el.tagName.toLowerCase();
-      if (el.id) { sel += '#' + el.id; parts.unshift(sel); break; }
-      const idx = Array.from(el.parentNode?.children ?? []).indexOf(el) + 1;
-      if (idx > 1) sel += ':nth-child(' + idx + ')';
-      parts.unshift(sel);
-      el = el.parentElement;
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      active = false;
+      overlay.style.display = 'none';
     }
-    return parts.join(' > ');
-  }
-  window.__ccInspectorSetActive = (v) => { active = v; };
+  }, true);
+  window.__ccInspectorSetActive = (v) => {
+    active = Boolean(v);
+    hovered = null;
+    if (!active && !selected) overlay.style.display = 'none';
+  };
+  window.__ccInspectorSelectParent = () => {
+    const parent = selected && selected.parentElement;
+    if (isSelectableElement(parent)) sendSelection(parent);
+  };
 })();
 "#;
 
@@ -1211,14 +1393,16 @@ fn browser_open(
     url: String,
     x: i32, y: i32, width: u32, height: u32,
 ) -> Result<(), String> {
+    if !is_allowed_browser_url(&url) {
+        return Err("browser panel only supports localhost and local file URLs".to_string());
+    }
+
     // Close existing panel if any
     if let Some(w) = app.get_webview_window(BROWSER_WINDOW_LABEL) {
         let _ = w.close();
     }
 
-    let is_local = url.starts_with("http://localhost")
-        || url.starts_with("http://127.0.0.1")
-        || url.starts_with("file://");
+    let is_local = should_inject_browser_inspector(&url);
 
     let main = app.get_webview_window(MAIN_WINDOW_LABEL)
         .ok_or("main window not found")?;
@@ -1247,6 +1431,10 @@ fn browser_open(
 
 #[tauri::command]
 fn browser_navigate(app: AppHandle, url: String) -> Result<(), String> {
+    if !is_allowed_browser_url(&url) {
+        return Err("browser panel only supports localhost and local file URLs".to_string());
+    }
+
     let w = app.get_webview_window(BROWSER_WINDOW_LABEL)
         .ok_or("browser panel not open")?;
     w.navigate(url.parse().map_err(|e| format!("invalid url: {e}"))?)
@@ -1277,6 +1465,136 @@ fn browser_inspector_set_active(app: AppHandle, active: bool) -> Result<(), Stri
         .ok_or("browser panel not open")?;
     let script = format!("window.__ccInspectorSetActive && window.__ccInspectorSetActive({});", active);
     w.eval(&script).map_err(|e| format!("eval: {e}"))
+}
+
+#[tauri::command]
+fn browser_inspector_select_parent(app: AppHandle) -> Result<(), String> {
+    let w = app.get_webview_window(BROWSER_WINDOW_LABEL)
+        .ok_or("browser panel not open")?;
+    w.eval("window.__ccInspectorSelectParent && window.__ccInspectorSelectParent();")
+        .map_err(|e| format!("eval: {e}"))
+}
+
+#[tauri::command]
+fn browser_element_selected(app: AppHandle, payload: serde_json::Value) -> Result<(), String> {
+    app.emit("browser_element_selected", payload)
+        .map_err(|e| format!("emit browser element selection: {e}"))
+}
+
+#[tauri::command]
+fn browser_screenshot(app: AppHandle) -> Result<String, String> {
+    let w = app.get_webview_window(BROWSER_WINDOW_LABEL)
+        .ok_or("browser panel not open")?;
+
+    #[cfg(target_os = "windows")]
+    {
+        let hwnd = w.hwnd().map_err(|e| format!("get browser window handle: {e}"))?;
+        return capture_hwnd_png_data_url(hwnd);
+    }
+
+    #[cfg(not(target_os = "windows"))]
+    {
+        let _ = w;
+        Err("Browser screenshot capture is only implemented on Windows right now.".to_string())
+    }
+}
+
+#[cfg(target_os = "windows")]
+fn capture_hwnd_png_data_url(hwnd: HWND) -> Result<String, String> {
+    let mut rect = RECT::default();
+    unsafe {
+        GetClientRect(hwnd, &mut rect).map_err(|e| format!("get browser bounds: {e}"))?;
+    }
+
+    let width = rect.right - rect.left;
+    let height = rect.bottom - rect.top;
+    if width <= 0 || height <= 0 {
+        return Err("browser window has no drawable area".to_string());
+    }
+
+    let width_u32 = width as u32;
+    let height_u32 = height as u32;
+    let bitmap_bytes_len = (width_u32 as usize)
+        .checked_mul(height_u32 as usize)
+        .and_then(|pixels| pixels.checked_mul(4))
+        .ok_or("browser screenshot is too large")?;
+
+    unsafe {
+        let window_dc = GetDC(Some(hwnd));
+        if window_dc.0.is_null() {
+            return Err("get browser device context failed".to_string());
+        }
+
+        let memory_dc = CreateCompatibleDC(Some(window_dc));
+        if memory_dc.0.is_null() {
+            let _ = ReleaseDC(Some(hwnd), window_dc);
+            return Err("create compatible device context failed".to_string());
+        }
+
+        let bitmap = CreateCompatibleBitmap(window_dc, width, height);
+        if bitmap.0.is_null() {
+            cleanup_gdi(hwnd, window_dc, memory_dc, HBITMAP::default());
+            return Err("create compatible bitmap failed".to_string());
+        }
+
+        let old_object = SelectObject(memory_dc, HGDIOBJ(bitmap.0));
+        let _ = BitBlt(memory_dc, 0, 0, width, height, Some(window_dc), 0, 0, SRCCOPY);
+
+        let mut info = BITMAPINFO {
+            bmiHeader: BITMAPINFOHEADER {
+                biSize: std::mem::size_of::<BITMAPINFOHEADER>() as u32,
+                biWidth: width,
+                biHeight: -height,
+                biPlanes: 1,
+                biBitCount: 32,
+                biCompression: BI_RGB.0,
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+        let mut bgra = vec![0_u8; bitmap_bytes_len];
+        let scan_lines = GetDIBits(
+            memory_dc,
+            bitmap,
+            0,
+            height_u32,
+            Some(bgra.as_mut_ptr().cast()),
+            &mut info,
+            DIB_RGB_COLORS,
+        );
+
+        let _ = SelectObject(memory_dc, old_object);
+        cleanup_gdi(hwnd, window_dc, memory_dc, bitmap);
+
+        if scan_lines == 0 {
+            return Err("read browser bitmap failed".to_string());
+        }
+
+        for pixel in bgra.chunks_exact_mut(4) {
+            pixel.swap(0, 2);
+            pixel[3] = 255;
+        }
+
+        let mut png = Vec::new();
+        PngEncoder::new(&mut png)
+            .write_image(&bgra, width_u32, height_u32, ColorType::Rgba8.into())
+            .map_err(|e| format!("encode browser screenshot: {e}"))?;
+
+        Ok(format!("data:image/png;base64,{}", BASE64_STANDARD.encode(png)))
+    }
+}
+
+#[cfg(target_os = "windows")]
+unsafe fn cleanup_gdi(hwnd: HWND, window_dc: HDC, memory_dc: HDC, bitmap: HBITMAP) {
+    if !bitmap.0.is_null() {
+        let _ = DeleteObject(HGDIOBJ(bitmap.0));
+    }
+    if !memory_dc.0.is_null() {
+        let _ = DeleteDC(memory_dc);
+    }
+    if !window_dc.0.is_null() {
+        let _ = ReleaseDC(Some(hwnd), window_dc);
+    }
 }
 
 #[tauri::command]
@@ -2311,7 +2629,10 @@ pub fn run() {
             browser_navigate,
             browser_set_bounds,
             browser_close,
-            browser_inspector_set_active
+            browser_inspector_set_active,
+            browser_inspector_select_parent,
+            browser_element_selected,
+            browser_screenshot
         ]);
 
     // macOS: native menu bar (traffic-light overlay style)
