@@ -1,0 +1,32 @@
+#!/usr/bin/env bun
+import { existsSync } from 'node:fs'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { spawnSync } from 'bun'
+
+const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), '..')
+process.env.CALLER_DIR ??= process.cwd()
+process.chdir(rootDir)
+
+let envFileFlag: string | null = null
+if (process.env.COCODEAI_SKIP_DOTENV === '1') {
+  envFileFlag = `--env-file=${process.platform === 'win32' ? 'NUL' : '/dev/null'}`
+} else if (existsSync('.env')) {
+  envFileFlag = '--env-file=.env'
+}
+
+const entrypoint =
+  process.env.COCODEAI_FORCE_RECOVERY_CLI === '1'
+    ? './src/localRecoveryCli.ts'
+    : './src/entrypoints/cli.tsx'
+
+const args = [...(envFileFlag ? [envFileFlag] : []), entrypoint, ...process.argv.slice(2)]
+const result = spawnSync({
+  cmd: [process.execPath, ...args],
+  stdout: 'inherit',
+  stderr: 'inherit',
+  stdin: 'inherit',
+  env: process.env,
+})
+
+process.exit(result.exitCode ?? 1)
