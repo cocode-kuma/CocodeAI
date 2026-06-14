@@ -1,0 +1,1564 @@
+$ tauri dev
+     Running BeforeDevCommand (`bun run build:sidecars && bun run dev`)
+$ bun run ./scripts/build-sidecars.ts
+        Warn Waiting for your frontend dev server to start on http://localhost:1420/...
+$ vite
+     Running DevCommand (`cargo  run --no-default-features --color always --`)
+        Info Watching C:\Users\SurgeFC\Downloads\CocodeAI-main\desktop\src-tauri for changes...
+[1m[92m   Compiling[0m cocodeai v0.3.1 (C:\Users\SurgeFC\Downloads\CocodeAI-main\desktop\src-tauri)
+[1m[96m    Building[0m [=======================> ] 481/484: cocodea…[1m[96m    Building[0m [=======================> ] 482/484: cocodeai                                                            [1m[93mwarning[0m[1m[97m: variant `Posix` is never constructed[0m
+   [1m[96m--> [0msrc\lib.rs:475:5
+    [1m[96m|[0m
+[1m[96m473[0m [1m[96m|[0m enum TerminalHostPlatform {
+    [1m[96m|[0m      [1m[96m--------------------[0m [1m[96mvariant in this enum[0m
+[1m[96m474[0m [1m[96m|[0m     Windows,
+[1m[96m475[0m [1m[96m|[0m     Posix,
+    [1m[96m|[0m     [1m[93m^^^^^[0m
+    [1m[96m|[0m
+    [1m[96m= [0m[1m[97mnote[0m: `TerminalHostPlatform` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+    [1m[96m= [0m[1m[97mnote[0m: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+[1m[96m    Building[0m [=======================> ] 482/484: cocodeai                                                            [1m[93mwarning[0m[1m[97m: function `parse_env_block` is never used[0m
+    [1m[96m--> [0msrc\lib.rs:1750:4
+     [1m[96m|[0m
+[1m[96m1750[0m [1m[96m|[0m fn parse_env_block(bytes: &[u8]) -> HashMap<String, String> {
+     [1m[96m|[0m    [1m[93m^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=======================> ] 482/484: cocodeai                                                            [1m[93mwarning[0m: `cocodeai` (lib) generated 2 warnings
+[1m[96m    Building[0m [=======================> ] 483/484: cocodea…                                                            [1m[92m    Finished[0m `dev` profile [unoptimized + debuginfo] target(s) in 24.65s
+[1m[92m     Running[0m `target\debug\cocodeai.exe`
+[claude-adapters:feishu] [claude-sidecar] --feishu requested but FEISHU_APP_ID / FEISHU_APP_SECRET missing in env or ~/.claude/adapters.json — skipping
+[claude-adapters:feishu] [claude-sidecar] no adapter could be started — check credentials in env or ~/.claude/adapters.json
+[claude-adapters:telegram] [claude-sidecar] --telegram requested but TELEGRAM_BOT_TOKEN missing in env or ~/.claude/adapters.json — skipping
+[claude-adapters:telegram] [claude-sidecar] no adapter could be started — check credentials in env or ~/.claude/adapters.json
+[claude-adapters:wechat] [claude-sidecar] --wechat requested but no QR-bound WeChat account found in env or ~/.claude/adapters.json — skipping
+[claude-adapters:wechat] [claude-sidecar] no adapter could be started — check credentials in env or ~/.claude/adapters.json
+[claude-adapters:dingtalk] [claude-sidecar] --dingtalk requested but DINGTALK_CLIENT_ID / DINGTALK_CLIENT_SECRET missing in env or ~/.claude/adapters.json — skipping
+[claude-adapters:dingtalk] [claude-sidecar] no adapter could be started — check credentials in env or ~/.claude/adapters.json
+[2m11:57:35[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22m[scheduledTaskNotifications] failed to poll task runs: TypeError: Failed to fetch
+    at request (http://localhost:1420/src/api/client.ts:57:21)
+    at Object.get (http://localhost:1420/src/api/client.ts:128:26)
+    at Object.list (http://localhost:1420/src/api/tasks.ts:4:14)
+    at poll (http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:47:63)
+    at http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:78:8
+    at commitHookEffectListMount (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:13832:24)
+    at commitPassiveMountOnFiber (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14771:8)
+    at commitPassiveMountEffects_complete (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14744:7)
+    at commitPassiveMountEffects_begin (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14735:12)
+    at commitPassiveMountEffects (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14726:4)
+[2m11:57:35[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22m[scheduledTaskNotifications] failed to poll task runs: TypeError: Failed to fetch
+    at request (http://localhost:1420/src/api/client.ts:57:21)
+    at Object.get (http://localhost:1420/src/api/client.ts:128:26)
+    at Object.list (http://localhost:1420/src/api/tasks.ts:4:14)
+    at poll (http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:47:63)
+    at http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:78:8
+    at commitHookEffectListMount (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:13832:24)
+    at invokePassiveEffectMountInDEV (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14917:7)
+    at invokeEffectsInDev (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:15965:52)
+    at commitDoubleInvokeEffectsInDEV (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:15955:27)
+    at flushPassiveEffectsImpl (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:15818:4)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React does not recognize the `startContent` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `startcontent` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at input
+    at $7230ffa83bc0c2cf$var$DOMElement (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6524:8)
+    at Wrapper (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6590:35)
+    at InputRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:40107:20)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React does not recognize the `classNames` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `classnames` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at input
+    at $7230ffa83bc0c2cf$var$DOMElement (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6524:8)
+    at Wrapper (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6590:35)
+    at InputRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:40107:20)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: Rendering <Context> directly is not supported and will be removed in a future major release. Did you mean to render <Context.Consumer> instead?
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > performSyncWorkOnRoot node_modules/react-dom/cjs/react-dom.development.js:26124:19
+
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > performSyncWorkOnRoot node_modules/react-dom/cjs/react-dom.development.js:26124:19
+
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at AccordionRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:8971:24)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at AccordionRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:8971:24)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > performSyncWorkOnRoot node_modules/react-dom/cjs/react-dom.development.js:26124:19
+
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:19
+
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:51[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:52[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:19
+
+[2m11:58:52[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at AccordionRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:8971:24)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:52[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at AccordionRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:8971:24)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:52[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:19
+
+[2m11:58:52[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <Context.Consumer> component:
+
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+[2m11:58:52[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <Context.Consumer> component:
+
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+[2m11:58:52[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <Context.Consumer> component:
+
+    at AccordionRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:8971:24)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx:26:24)
+    at App (http://localhost:1420/src/App.tsx:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+[2m11:58:53[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React does not recognize the `startContent` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `startcontent` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at input
+    at $7230ffa83bc0c2cf$var$DOMElement (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6524:8)
+    at Wrapper (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6590:35)
+    at InputRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:40107:20)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:53[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React does not recognize the `classNames` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `classnames` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at input
+    at $7230ffa83bc0c2cf$var$DOMElement (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6524:8)
+    at Wrapper (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6590:35)
+    at InputRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:40107:20)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:53[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: Rendering <Context> directly is not supported and will be removed in a future major release. Did you mean to render <Context.Consumer> instead?
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:53[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:53[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:53[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > performConcurrentWorkOnRoot node_modules/react-dom/cjs/react-dom.development.js:25777:73
+
+[2m11:58:53[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:53[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:54[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > performConcurrentWorkOnRoot node_modules/react-dom/cjs/react-dom.development.js:25777:73
+
+[2m11:58:54[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:54[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:54[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:19
+
+[2m11:58:54[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:54[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:58:54[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:19
+
+[2m11:58:54[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <Context.Consumer> component:
+
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+[2m11:58:54[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <Context.Consumer> component:
+
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+[2m11:58:55[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22m[scheduledTaskNotifications] failed to poll task runs: TypeError: Failed to fetch
+    at request (http://localhost:1420/src/api/client.ts:57:21)
+    at Object.get (http://localhost:1420/src/api/client.ts:128:26)
+    at Object.list (http://localhost:1420/src/api/tasks.ts:4:14)
+    at poll (http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:47:63)
+    at http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:78:8
+    at commitHookEffectListMount (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:13832:24)
+    at commitPassiveMountOnFiber (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14771:8)
+    at commitPassiveMountEffects_complete (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14744:7)
+    at commitPassiveMountEffects_begin (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14735:12)
+    at commitPassiveMountEffects (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14726:4)
+[2m11:58:55[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22m[scheduledTaskNotifications] failed to poll task runs: TypeError: Failed to fetch
+    at request (http://localhost:1420/src/api/client.ts:57:21)
+    at Object.get (http://localhost:1420/src/api/client.ts:128:26)
+    at Object.list (http://localhost:1420/src/api/tasks.ts:4:14)
+    at poll (http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:47:63)
+    at http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:78:8
+    at commitHookEffectListMount (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:13832:24)
+    at invokePassiveEffectMountInDEV (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14917:7)
+    at invokeEffectsInDev (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:15965:52)
+    at commitDoubleInvokeEffectsInDEV (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:15955:27)
+    at flushPassiveEffectsImpl (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:15818:4)
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React does not recognize the `startContent` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `startcontent` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at input
+    at $7230ffa83bc0c2cf$var$DOMElement (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6524:8)
+    at Wrapper (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6590:35)
+    at InputRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:40107:20)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React does not recognize the `classNames` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `classnames` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at input
+    at $7230ffa83bc0c2cf$var$DOMElement (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6524:8)
+    at Wrapper (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6590:35)
+    at InputRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:40107:20)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: Rendering <Context> directly is not supported and will be removed in a future major release. Did you mean to render <Context.Consumer> instead?
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > performConcurrentWorkOnRoot node_modules/react-dom/cjs/react-dom.development.js:25777:73
+
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > performConcurrentWorkOnRoot node_modules/react-dom/cjs/react-dom.development.js:25777:73
+
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:19
+
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:19
+
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <Context.Consumer> component:
+
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+[2m11:59:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <Context.Consumer> component:
+
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+[2m11:59:13[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22m[scheduledTaskNotifications] failed to poll task runs: TypeError: Failed to fetch
+    at request (http://localhost:1420/src/api/client.ts:57:21)
+    at Object.get (http://localhost:1420/src/api/client.ts:128:26)
+    at Object.list (http://localhost:1420/src/api/tasks.ts:4:14)
+    at poll (http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:47:63)
+    at http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:78:8
+    at commitHookEffectListMount (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:13832:24)
+    at commitPassiveMountOnFiber (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14771:8)
+    at commitPassiveMountEffects_complete (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14744:7)
+    at commitPassiveMountEffects_begin (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14735:12)
+    at commitPassiveMountEffects (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14726:4)
+[2m11:59:13[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22m[scheduledTaskNotifications] failed to poll task runs: TypeError: Failed to fetch
+    at request (http://localhost:1420/src/api/client.ts:57:21)
+    at Object.get (http://localhost:1420/src/api/client.ts:128:26)
+    at Object.list (http://localhost:1420/src/api/tasks.ts:4:14)
+    at poll (http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:47:63)
+    at http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:78:8
+    at commitHookEffectListMount (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:13832:24)
+    at invokePassiveEffectMountInDEV (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14917:7)
+    at invokeEffectsInDev (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:15965:52)
+    at commitDoubleInvokeEffectsInDEV (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:15955:27)
+    at flushPassiveEffectsImpl (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:15818:4)
+[2m12:00:00[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React does not recognize the `startContent` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `startcontent` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at input
+    at $7230ffa83bc0c2cf$var$DOMElement (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6524:8)
+    at Wrapper (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6590:35)
+    at InputRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:40107:20)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m12:00:00[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React does not recognize the `classNames` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `classnames` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at input
+    at $7230ffa83bc0c2cf$var$DOMElement (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6524:8)
+    at Wrapper (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:6590:35)
+    at InputRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:40107:20)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m12:00:00[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: Rendering <Context> directly is not supported and will be removed in a future major release. Did you mean to render <Context.Consumer> instead?
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m12:00:00[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m12:00:00[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m12:00:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > performConcurrentWorkOnRoot node_modules/react-dom/cjs/react-dom.development.js:25777:73
+
+[2m12:00:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m12:00:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m12:00:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > performConcurrentWorkOnRoot node_modules/react-dom/cjs/react-dom.development.js:25777:73
+
+[2m12:00:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m12:00:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m12:00:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:19
+
+[2m12:00:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m12:00:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+[2m12:00:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: render is not a function
+[39m > updateContextConsumer node_modules/react-dom/cjs/react-dom.development.js:21246:18
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21691:13
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27490:6
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+ > renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:6
+ > recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:19
+
+[2m12:00:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <Context.Consumer> component:
+
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+[2m12:00:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <Context.Consumer> component:
+
+    at TooltipRoot (http://localhost:1420/node_modules/.vite/deps/@heroui_react.js?v=9c50812e:39930:22)
+    at div
+    at div
+    at aside
+    at MotionDOMComponent (http://localhost:1420/node_modules/.vite/deps/framer-motion.js?v=9c50812e:9966:35)
+    at Sidebar (http://localhost:1420/src/components/layout/Sidebar.tsx?t=1780718330364:40:27)
+    at div
+    at div
+    at AppShell (http://localhost:1420/src/components/layout/AppShell.tsx?t=1780718330364:26:24)
+    at App (http://localhost:1420/src/App.tsx?t=1780718330364:10:2)
+    at ErrorBoundary (http://localhost:1420/src/components/ErrorBoundary.tsx:8:8)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+[2m12:00:02[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22m[scheduledTaskNotifications] failed to poll task runs: TypeError: Failed to fetch
+    at request (http://localhost:1420/src/api/client.ts:57:21)
+    at Object.get (http://localhost:1420/src/api/client.ts:128:26)
+    at Object.list (http://localhost:1420/src/api/tasks.ts:4:14)
+    at poll (http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:47:63)
+    at http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:78:8
+    at commitHookEffectListMount (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:13832:24)
+    at commitPassiveMountOnFiber (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14771:8)
+    at commitPassiveMountEffects_complete (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14744:7)
+    at commitPassiveMountEffects_begin (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14735:12)
+    at commitPassiveMountEffects (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14726:4)
+[2m12:00:02[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22m[scheduledTaskNotifications] failed to poll task runs: TypeError: Failed to fetch
+    at request (http://localhost:1420/src/api/client.ts:57:21)
+    at Object.get (http://localhost:1420/src/api/client.ts:128:26)
+    at Object.list (http://localhost:1420/src/api/tasks.ts:4:14)
+    at poll (http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:47:63)
+    at http://localhost:1420/src/hooks/useScheduledTaskDesktopNotifications.ts:78:8
+    at commitHookEffectListMount (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:13832:24)
+    at invokePassiveEffectMountInDEV (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:14917:7)
+    at invokeEffectsInDev (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:15965:52)
+    at commitDoubleInvokeEffectsInDEV (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:15955:27)
+    at flushPassiveEffectsImpl (http://localhost:1420/node_modules/.vite/deps/react-dom-BHX63R1v.js?v=9c50812e:15818:4)
+[2m12:00:05[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718404132:28:24)
+[2m12:00:05[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718404132:28:24)
+[2m12:00:05[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718404132:28:24)
+[2m12:00:05[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718404132:28:24)
+[2m12:00:05[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+
+[2m12:00:05[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718404132:28:24)
+[2m12:00:05[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718404132:28:24)
+[2m12:00:05[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718404132:28:24)
+[2m12:00:05[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718404132:28:24)
+[2m12:00:05[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+
+[2m12:00:05[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <ThemedApp> component:
+
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718404132:28:24)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+[2m12:00:05[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:13
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+
+[2m12:00:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+
+[2m12:00:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+
+[2m12:00:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <ThemedApp> component:
+
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+[2m12:00:11[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:13
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+
+[2m12:00:12[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:12[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:12[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:12[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:12[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+
+[2m12:00:12[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:12[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:12[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:12[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:12[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+
+[2m12:00:12[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <ThemedApp> component:
+
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+[2m12:00:12[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:13
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+
+[2m12:00:13[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:13[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:13[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:13[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:13[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+
+[2m12:00:13[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:13[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:13[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:13[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:13[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+
+[2m12:00:13[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <ThemedApp> component:
+
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+[2m12:00:13[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:13
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+
+[2m12:00:14[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] SyntaxError: The requested module '/node_modules/.vite/deps/@heroui_react.js?v=9c50812e' does not provide an export named 'ModalContent'
+[2m12:00:14[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /src/components/shared/Modal.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m12:00:15[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:15[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:15[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:15[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:16[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+
+[2m12:00:16[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:16[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:16[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:16[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:16[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+
+[2m12:00:16[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <ThemedApp> component:
+
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+[2m12:00:16[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:13
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+
+[2m12:00:17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+
+[2m12:00:17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mWarning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at main.tsx:51.
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+[2m12:00:17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > HTMLUnknownElement.callCallback node_modules/react-dom/cjs/react-dom.development.js:4164:13
+ > Object.invokeGuardedCallbackDev node_modules/react-dom/cjs/react-dom.development.js:4213:15
+ > invokeGuardedCallback node_modules/react-dom/cjs/react-dom.development.js:4277:30
+
+[2m12:00:17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mThe above error occurred in the <ThemedApp> component:
+
+    at ThemedApp (http://localhost:1420/src/main.tsx?t=1780718410216:28:24)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+[2m12:00:17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ThemedApp`.
+[39m > createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:16
+ > createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:14
+ > reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:22
+ > reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:34
+ > reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:27
+ > mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20186:4
+ > beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:15
+ > beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:13
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26596:11
+ > workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:4
+
+[2m12:00:18[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[desktop] Failed to bootstrap app SyntaxError: The requested module '/node_modules/.vite/deps/@heroui_react.js?v=9c50812e' does not provide an export named 'ModalContent'
+[2m12:00:20[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[desktop] Failed to bootstrap app SyntaxError: The requested module '/node_modules/.vite/deps/@heroui_react.js?v=9c50812e' does not provide an export named 'ModalContent'
+[2m12:03:44[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[desktop] Failed to bootstrap app SyntaxError: The requested module '/node_modules/.vite/deps/@heroui_react.js?v=9c50812e' does not provide an export named 'ModalContent'
+[claude-server] sidecar exited (code=Some(1), signal=None)
+[0606/120503.623:ERROR:ui\gfx\win\window_impl.cc:172] Failed to unregister class Chrome_WidgetWin_0. Error = 1412
+error: script "dev" exited with code 255

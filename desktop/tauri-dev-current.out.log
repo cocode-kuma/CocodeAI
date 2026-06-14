@@ -1,0 +1,57 @@
+[build-sidecars] scanning for missing imports...
+[scan] scanned 2267 source files
+[scan] missing 0 stub targets
+[scan] created 0 stubs, skipped 0
+[build-sidecars] Claude Code Sidecar -> C:\Users\SurgeFC\Downloads\CocodeAI-main\desktop\src-tauri\binaries\claude-sidecar-x86_64-pc-windows-msvc.exe
+[build-sidecars] Built desktop sidecar for x86_64-pc-windows-msvc (bun-windows-x64-baseline)
+
+  [32m[1mVITE[22m v8.0.10[39m  [2mready in [0m[1m643[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m1420[22m/[39m
+[claude-server] [CronScheduler] Starting — checking every 60 s
+[claude-server] [Server] Claude Code API server running at http://0.0.0.0:54374
+[claude-adapters:feishu] sidecar exited (code=Some(1), signal=None)
+[claude-adapters:telegram] sidecar exited (code=Some(1), signal=None)
+[claude-adapters:wechat] sidecar exited (code=Some(1), signal=None)
+[claude-adapters:dingtalk] sidecar exited (code=Some(1), signal=None)
+[claude-server] [WS] Client connected for session: 7c4bb3e9-3a0c-4259-ac26-1301e5dd8f96
+[claude-server] [WS] resolveSessionWorkDir: sessionId=7c4bb3e9-3a0c-4259-ac26-1301e5dd8f96, resolved workDir="C:\\Users\\SurgeFC", will spawn CLI with workDir=C:\Users\SurgeFC
+[claude-server] [WS] Starting CLI for 7c4bb3e9-3a0c-4259-ac26-1301e5dd8f96 due to prewarm_session
+[claude-server] [ConversationService] Starting CLI for 7c4bb3e9-3a0c-4259-ac26-1301e5dd8f96, cwd: C:\Users\SurgeFC (process.cwd()=C:\Users\SurgeFC\Downloads\CocodeAI-main\desktop\src-tauri, CALLER_DIR will be pinned to workDir)
+[claude-server] [ConversationService] CLI started successfully for 7c4bb3e9-3a0c-4259-ac26-1301e5dd8f96
+[claude-server] [WS] SDK connected for session: 7c4bb3e9-3a0c-4259-ac26-1301e5dd8f96
+[claude-server] [WS] Client connected for session: 9a245203-bc6b-4135-b358-e21723d19d99
+[claude-server] [WS] resolveSessionWorkDir: sessionId=9a245203-bc6b-4135-b358-e21723d19d99, resolved workDir="C:\\Users\\SurgeFC", will spawn CLI with workDir=C:\Users\SurgeFC
+[claude-server] [WS] Starting CLI for 9a245203-bc6b-4135-b358-e21723d19d99 due to prewarm_session
+[claude-server] [ConversationService] Starting CLI for 9a245203-bc6b-4135-b358-e21723d19d99, cwd: C:\Users\SurgeFC (process.cwd()=C:\Users\SurgeFC\Downloads\CocodeAI-main\desktop\src-tauri, CALLER_DIR will be pinned to workDir)
+[claude-server] [WS] SDK connected for session: 9a245203-bc6b-4135-b358-e21723d19d99
+[claude-server] [ConversationService] CLI started successfully for 9a245203-bc6b-4135-b358-e21723d19d99
+[claude-server] [WS] Client connected for session: 35cf976f-466f-45a4-802c-0ab705f2d8c1
+[claude-server] [WS] resolveSessionWorkDir: sessionId=35cf976f-466f-45a4-802c-0ab705f2d8c1, resolved workDir="C:\\Users\\SurgeFC", will spawn CLI with workDir=C:\Users\SurgeFC
+[claude-server] [WS] Starting CLI for 35cf976f-466f-45a4-802c-0ab705f2d8c1 due to prewarm_session
+[claude-server] [ConversationService] Starting CLI for 35cf976f-466f-45a4-802c-0ab705f2d8c1, cwd: C:\Users\SurgeFC (process.cwd()=C:\Users\SurgeFC\Downloads\CocodeAI-main\desktop\src-tauri, CALLER_DIR will be pinned to workDir)
+[claude-server] [ConversationService] CLI started successfully for 35cf976f-466f-45a4-802c-0ab705f2d8c1
+[claude-server] [WS] SDK connected for session: 35cf976f-466f-45a4-802c-0ab705f2d8c1
+[2m11:58:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/theme/globals.css, /src/components/layout/Sidebar.tsx[22m
+[claude-server] [WS] Client disconnected from session: 7c4bb3e9-3a0c-4259-ac26-1301e5dd8f96 (1001: )
+[claude-server] [WS] Client disconnected from session: 9a245203-bc6b-4135-b358-e21723d19d99 (1001: )
+[claude-server] [WS] Client disconnected from session: 35cf976f-466f-45a4-802c-0ab705f2d8c1 (1001: )
+[claude-server] [WS] Session 7c4bb3e9-3a0c-4259-ac26-1301e5dd8f96 not reconnected after 30000ms, stopping CLI subprocess
+[claude-server] [WS] Session 9a245203-bc6b-4135-b358-e21723d19d99 not reconnected after 30000ms, stopping CLI subprocess
+[claude-server] [WS] Session 35cf976f-466f-45a4-802c-0ab705f2d8c1 not reconnected after 30000ms, stopping CLI subprocess
+[claude-server] [WS] SDK disconnected from session: 9a245203-bc6b-4135-b358-e21723d19d99 (1006: )
+[claude-server] [WS] SDK disconnected from session: 35cf976f-466f-45a4-802c-0ab705f2d8c1 (1006: )
+[claude-server] [WS] SDK disconnected from session: 7c4bb3e9-3a0c-4259-ac26-1301e5dd8f96 (1006: )
+[claude-server] [ConversationService] CLI process for 9a245203-bc6b-4135-b358-e21723d19d99 exited with code 143
+[claude-server] [ConversationService] CLI process for 35cf976f-466f-45a4-802c-0ab705f2d8c1 exited with code 143
+[claude-server] [ConversationService] CLI process for 7c4bb3e9-3a0c-4259-ac26-1301e5dd8f96 exited with code 143
+[2m12:00:04[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/main.tsx[22m
+[2m12:00:06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/theme/globals.css[22m
+[2m12:00:10[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/theme/heroui-theme.ts[22m
+[2m12:00:11[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/theme/globals.css, /src/components/shared/Button.tsx[22m
+[2m12:00:12[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/theme/globals.css, /src/components/shared/Input.tsx[22m
+[2m12:00:14[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/theme/globals.css, /src/components/shared/Modal.tsx[22m
+[2m12:00:15[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/theme/globals.css, /src/components/shared/Dropdown.tsx[22m
+[2m12:00:16[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/theme/globals.css, /src/components/shared/Toast.tsx[22m
+[2m12:00:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/theme/globals.css, /src/components/tasks/DayOfWeekPicker.tsx[22m
+[2m12:03:43[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/theme/heroui-theme.ts[22m
